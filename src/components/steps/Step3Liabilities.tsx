@@ -169,7 +169,7 @@ export const Step3Liabilities: React.FC<Step3Props> = ({ state, dispatch }) => {
           onClick={() => dispatch({ type: 'SET_STEP', payload: 4 })}
           rightIcon={<ChevronRight className="h-5 w-5" />}
         >
-          Calculate Zakat
+          Calculate
         </Button>
       </div>
     </motion.div>
