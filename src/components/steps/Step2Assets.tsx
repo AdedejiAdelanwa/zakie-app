@@ -151,7 +151,7 @@ export const Step2Assets: React.FC<Step2Props> = ({ state, dispatch }) => {
 
       {/* Total Assets */}
       <motion.div
-        className="bg-emerald-700 rounded-2xl p-4 text-white sticky bottom-4 shadow-xl shadow-emerald-900/30"
+        className="bg-emerald-700 rounded-2xl p-3 sm:p-4 text-white sticky bottom-4 shadow-xl shadow-emerald-900/30"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
@@ -159,7 +159,7 @@ export const Step2Assets: React.FC<Step2Props> = ({ state, dispatch }) => {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-emerald-200 text-xs font-medium">Total Assets</p>
-            <p className="text-2xl font-bold mt-0.5">
+            <p className="text-xl font-bold mt-0.5 break-all">
               {formatCurrency(totalAssets, state.currency)}
             </p>
           </div>

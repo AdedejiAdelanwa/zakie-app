@@ -53,7 +53,7 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, dispatch, addTo
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.1 }}
-        className={`rounded-2xl p-6 text-center shadow-xl ${
+        className={`rounded-2xl p-4 sm:p-6 text-center shadow-xl ${
           results.isZakatDue
             ? 'bg-gradient-to-br from-amber-400 via-amber-400 to-amber-500'
             : 'bg-gradient-to-br from-emerald-600 to-emerald-700'
@@ -76,7 +76,7 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, dispatch, addTo
             <p className="text-amber-900 text-sm font-semibold uppercase tracking-wider mb-1">
               Zakat Due
             </p>
-            <p className="text-5xl font-bold text-white mb-2">
+            <p className="text-3xl sm:text-5xl font-bold text-white mb-2 break-all">
               {formatCurrency(results.zakatDue, state.currency)}
             </p>
             <p className="text-amber-800 text-xs">
@@ -148,7 +148,7 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, dispatch, addTo
 
           <div className="flex items-center justify-between py-3 bg-stone-50 rounded-xl px-3">
             <p className="text-sm font-semibold text-stone-800">Net Zakatable Wealth</p>
-            <p className="text-base font-bold text-stone-900">
+            <p className="text-sm font-bold text-stone-900">
               {formatCurrency(results.netZakatableWealth, state.currency)}
             </p>
           </div>
@@ -164,19 +164,15 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, dispatch, addTo
             {results.isZakatDue ? (
               <>
                 <CheckCircle className="h-3.5 w-3.5 text-amber-600 shrink-0" />
-                <span>
-                  Net wealth ({formatCurrency(results.netZakatableWealth, state.currency)}) exceeds
-                  Nisab ({formatCurrency(results.nisabThreshold, state.currency)}) → Zakat is
-                  obligatory
+                <span className="break-words min-w-0">
+                  Net wealth exceeds Nisab → Zakat is obligatory
                 </span>
               </>
             ) : (
               <>
                 <XCircle className="h-3.5 w-3.5 text-stone-400 shrink-0" />
-                <span>
-                  Net wealth ({formatCurrency(results.netZakatableWealth, state.currency)}) is
-                  below Nisab ({formatCurrency(results.nisabThreshold, state.currency)}) → No Zakat
-                  due
+                <span className="break-words min-w-0">
+                  Net wealth is below Nisab → No Zakat due
                 </span>
               </>
             )}
@@ -234,7 +230,7 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, dispatch, addTo
         className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4"
       >
         <h3 className="text-xs font-semibold text-emerald-800 mb-2">Prices Used</h3>
-        <div className="grid grid-cols-2 gap-3 text-xs">
+        <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 text-xs">
           <div>
             <p className="text-emerald-600">Gold / gram</p>
             <p className="font-bold text-emerald-900">

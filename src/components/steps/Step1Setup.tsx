@@ -198,7 +198,7 @@ export const Step1Setup: React.FC<Step1Props> = ({ state, dispatch, addToast, di
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="grid grid-cols-2 gap-3 mb-4"
+            className="grid grid-cols-1 gap-3 mb-4"
           >
             <Input
               label="Gold price per gram"
@@ -230,13 +230,13 @@ export const Step1Setup: React.FC<Step1Props> = ({ state, dispatch, addToast, di
             animate={{ opacity: 1, y: 0 }}
             className="space-y-2"
           >
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2 min-w-0">
               <div className="bg-amber-50 border border-amber-200 rounded-xl p-3">
                 <div className="flex items-center gap-1.5 mb-1">
                   <Coins className="h-3.5 w-3.5 text-amber-600" />
                   <span className="text-xs font-medium text-amber-800">Gold / gram</span>
                 </div>
-                <p className="text-lg font-bold text-amber-700">
+                <p className="text-base font-bold text-amber-700 break-all">
                   {activeMetalPrices && activeMetalPrices.goldPerGram > 0
                     ? formatCurrency(activeMetalPrices.goldPerGram, state.currency)
                     : '—'}
@@ -247,7 +247,7 @@ export const Step1Setup: React.FC<Step1Props> = ({ state, dispatch, addToast, di
                   <TrendingUp className="h-3.5 w-3.5 text-stone-500" />
                   <span className="text-xs font-medium text-stone-600">Silver / gram</span>
                 </div>
-                <p className="text-lg font-bold text-stone-700">
+                <p className="text-base font-bold text-stone-700 break-all">
                   {activeMetalPrices && activeMetalPrices.silverPerGram > 0
                     ? formatCurrency(activeMetalPrices.silverPerGram, state.currency)
                     : '—'}
@@ -264,7 +264,7 @@ export const Step1Setup: React.FC<Step1Props> = ({ state, dispatch, addToast, di
                 <p className="text-xs text-emerald-700 font-medium mb-0.5">
                   Current Nisab Threshold ({state.nisabStandard} standard)
                 </p>
-                <p className="text-xl font-bold text-emerald-800">
+                <p className="text-lg font-bold text-emerald-800 break-all">
                   {formatCurrency(nisabValue, state.currency)}
                 </p>
                 <p className="text-xs text-emerald-600 mt-0.5">

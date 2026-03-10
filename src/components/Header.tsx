@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
           <Moon className="h-6 w-6 text-emerald-900 fill-emerald-900" />
         </div>
         <div>
-          <h1 className="text-xl font-bold tracking-tight">Zakat Calculator</h1>
+          <h1 className="text-lg sm:text-xl font-bold tracking-tight">Zakat Calculator</h1>
           <p className="text-emerald-200 text-xs mt-0.5">
             Calculate your annual obligation with live metal prices
           </p>

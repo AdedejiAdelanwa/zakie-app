@@ -146,7 +146,7 @@ export const Step3Liabilities: React.FC<Step3Props> = ({ state, dispatch }) => {
           <div className="h-px bg-stone-100" />
           <div className="flex justify-between items-center">
             <span className="text-sm font-semibold text-stone-800">Net Zakatable Wealth</span>
-            <span className="text-lg font-bold text-emerald-800">
+            <span className="text-base font-bold text-emerald-800 break-all">
               {formatCurrency(netWealth, state.currency)}
             </span>
           </div>

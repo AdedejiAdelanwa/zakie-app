@@ -1,4 +1,4 @@
-import { useReducer, useCallback, useState } from 'react';
+import { useReducer, useCallback, useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Header } from './components/Header';
 import { StepIndicator } from './components/StepIndicator';
@@ -79,6 +79,10 @@ export default function App() {
   const [state, dispatch] = useReducer(zakatReducer, initialState);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [state.currentStep]);
+
   const addToast = useCallback(
     (type: 'info' | 'success' | 'error', message: string, loading = false): string => {
       const id = generateId();
@@ -134,7 +138,7 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      <footer className="text-center py-6 px-4 no-print">
+      <footer className="text-center py-4 px-4 no-print">
         <p className="text-xs text-stone-400 max-w-md mx-auto leading-relaxed">
           All calculations are done locally in your browser. This is a guide only —
           consult a scholar for your specific situation.
