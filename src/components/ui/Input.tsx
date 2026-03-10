@@ -47,7 +47,7 @@ export const Input: React.FC<InputProps> = ({
               : 'border-stone-200 hover:border-stone-300',
             prefix ? 'pl-10' : 'pl-3',
             suffix ? 'pr-16' : 'pr-3',
-            'py-2.5 text-sm',
+            'py-2.5 text-base',
             className,
           ].join(' ')}
         />

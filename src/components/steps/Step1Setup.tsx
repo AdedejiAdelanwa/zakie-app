@@ -152,7 +152,7 @@ export const Step1Setup: React.FC<Step1Props> = ({ state, dispatch, addToast, di
               dispatch({ type: 'SET_CURRENCY', payload: e.target.value as CurrencyCode });
               dispatch({ type: 'SET_USE_MANUAL_PRICES', payload: false });
             }}
-            className="w-full rounded-xl border border-stone-200 bg-white text-stone-900 py-2.5 pl-3 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 hover:border-stone-300 appearance-none transition-colors"
+            className="w-full rounded-xl border border-stone-200 bg-white text-stone-900 py-2.5 pl-3 pr-8 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 hover:border-stone-300 appearance-none transition-colors"
           >
             {CURRENCIES.map((code) => (
               <option key={code} value={code}>

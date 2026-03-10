@@ -112,7 +112,7 @@ export const Step3Liabilities: React.FC<Step3Props> = ({ state, dispatch }) => {
                       placeholder={cat.placeholder}
                       value={value === 0 ? '' : value}
                       onChange={(e) => handleChange(cat.key, e.target.value)}
-                      className="w-full rounded-xl border border-stone-200 bg-white text-stone-900 placeholder-stone-300 py-2.5 pl-8 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 hover:border-stone-300 transition-colors"
+                      className="w-full rounded-xl border border-stone-200 bg-white text-stone-900 placeholder-stone-300 py-2.5 pl-8 pr-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 hover:border-stone-300 transition-colors"
                     />
                   </div>
                 </div>
