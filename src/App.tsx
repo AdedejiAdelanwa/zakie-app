@@ -131,7 +131,6 @@ export default function App() {
             <ResultsPage
               key="step4"
               state={state}
-              dispatch={dispatch}
               addToast={handleAddToast}
             />
           )}

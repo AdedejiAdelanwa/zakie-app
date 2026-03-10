@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Printer, RotateCcw, CheckCircle, XCircle, TrendingUp, TrendingDown, Scale } from 'lucide-react';
+import { Printer, CheckCircle, XCircle, TrendingUp, TrendingDown, Scale } from 'lucide-react';
 import { Button } from '../ui/Button';
-import { ZakatState, ZakatAction } from '../../types';
+import { ZakatState } from '../../types';
 import { calculateZakat, getAssetBreakdown } from '../../utils/calculations';
 import { formatCurrency } from '../../utils/formatters';
 
 interface ResultsPageProps {
   state: ZakatState;
-  dispatch: React.Dispatch<ZakatAction>;
   addToast: (type: 'info' | 'success' | 'error', message: string) => string;
 }
 
-export const ResultsPage: React.FC<ResultsPageProps> = ({ state, dispatch, addToast }) => {
+export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => {
   const metalPrices = state.metalPrices!;
   const results = calculateZakat(
     state.assets,
@@ -28,9 +27,6 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, dispatch, addTo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleReset = () => {
-    dispatch({ type: 'RESET' });
-  };
 
   const handlePrint = () => {
     window.print();
