@@ -130,6 +130,7 @@ export default function App() {
           {state.currentStep === 4 && (
             <ResultsPage
               key="step4"
+              dispatch={dispatch}
               state={state}
               addToast={handleAddToast}
             />

@@ -1,32 +1,39 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Printer, CheckCircle, XCircle, TrendingUp, TrendingDown, Scale } from 'lucide-react';
+import { Printer, CheckCircle, XCircle, TrendingUp, TrendingDown, Scale, RotateCcw } from 'lucide-react';
 import { Button } from '../ui/Button';
-import { ZakatState } from '../../types';
+import { ZakatAction, ZakatState } from '../../types';
 import { calculateZakat, getAssetBreakdown } from '../../utils/calculations';
 import { formatCurrency } from '../../utils/formatters';
 
 interface ResultsPageProps {
   state: ZakatState;
-  addToast: (type: 'info' | 'success' | 'error', message: string) => string;
+  dispatch: React.Dispatch<ZakatAction>;
+  addToast: (type: "info" | "success" | "error", message: string) => string;
 }
 
-export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => {
+export const ResultsPage: React.FC<ResultsPageProps> = ({
+  state,
+  addToast,
+  dispatch,
+}) => {
   const metalPrices = state.metalPrices!;
   const results = calculateZakat(
     state.assets,
     state.liabilities,
     state.nisabStandard,
-    metalPrices
+    metalPrices,
   );
 
   const breakdown = getAssetBreakdown(state.assets, results.totalAssets);
 
   useEffect(() => {
-    addToast('success', 'Zakat calculated successfully');
+    addToast("success", "Zakat calculated successfully");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  const handleReset = () => {
+    dispatch({ type: "RESET" });
+  };
 
   const handlePrint = () => {
     window.print();
@@ -34,14 +41,14 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => 
 
   const zakatRate = results.isZakatDue
     ? ((results.zakatDue / results.netZakatableWealth) * 100).toFixed(1)
-    : '0';
+    : "0";
 
   return (
     <motion.div
       initial={{ opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -40 }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
       className="space-y-5"
     >
       {/* Zakat Due Hero */}
@@ -51,8 +58,8 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => 
         transition={{ delay: 0.1 }}
         className={`rounded-2xl p-4 sm:p-6 text-center shadow-xl ${
           results.isZakatDue
-            ? 'bg-gradient-to-br from-amber-400 via-amber-400 to-amber-500'
-            : 'bg-gradient-to-br from-emerald-600 to-emerald-700'
+            ? "bg-gradient-to-br from-amber-400 via-amber-400 to-amber-500"
+            : "bg-gradient-to-br from-emerald-600 to-emerald-700"
         }`}
       >
         <div className="flex justify-center mb-3">
@@ -101,7 +108,9 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => 
         transition={{ delay: 0.2 }}
         className="bg-white rounded-2xl shadow-md border border-stone-100 p-5"
       >
-        <h3 className="text-sm font-semibold text-stone-700 mb-4">Calculation Summary</h3>
+        <h3 className="text-sm font-semibold text-stone-700 mb-4">
+          Calculation Summary
+        </h3>
         <div className="space-y-3">
           <div className="flex items-center justify-between py-2 border-b border-stone-50">
             <div className="flex items-center gap-2">
@@ -109,8 +118,12 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => 
                 <Scale className="h-3.5 w-3.5 text-amber-600" />
               </div>
               <div>
-                <p className="text-xs font-medium text-stone-600">Nisab Threshold</p>
-                <p className="text-xs text-stone-400 capitalize">{state.nisabStandard} standard</p>
+                <p className="text-xs font-medium text-stone-600">
+                  Nisab Threshold
+                </p>
+                <p className="text-xs text-stone-400 capitalize">
+                  {state.nisabStandard} standard
+                </p>
               </div>
             </div>
             <p className="text-sm font-bold text-stone-800">
@@ -135,7 +148,9 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => 
               <div className="bg-rose-100 rounded-lg p-1.5">
                 <TrendingDown className="h-3.5 w-3.5 text-rose-500" />
               </div>
-              <p className="text-xs font-medium text-stone-600">Total Liabilities</p>
+              <p className="text-xs font-medium text-stone-600">
+                Total Liabilities
+              </p>
             </div>
             <p className="text-sm font-bold text-rose-600">
               − {formatCurrency(results.totalLiabilities, state.currency)}
@@ -143,7 +158,9 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => 
           </div>
 
           <div className="flex items-center justify-between py-3 bg-stone-50 rounded-xl px-3">
-            <p className="text-sm font-semibold text-stone-800">Net Zakatable Wealth</p>
+            <p className="text-sm font-semibold text-stone-800">
+              Net Zakatable Wealth
+            </p>
             <p className="text-sm font-bold text-stone-900">
               {formatCurrency(results.netZakatableWealth, state.currency)}
             </p>
@@ -153,8 +170,8 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => 
           <div
             className={`flex items-center gap-2 text-xs p-3 rounded-xl ${
               results.isZakatDue
-                ? 'bg-amber-50 text-amber-800 border border-amber-200'
-                : 'bg-stone-50 text-stone-600 border border-stone-200'
+                ? "bg-amber-50 text-amber-800 border border-amber-200"
+                : "bg-stone-50 text-stone-600 border border-stone-200"
             }`}
           >
             {results.isZakatDue ? (
@@ -184,7 +201,9 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => 
           transition={{ delay: 0.3 }}
           className="bg-white rounded-2xl shadow-md border border-stone-100 p-5"
         >
-          <h3 className="text-sm font-semibold text-stone-700 mb-4">Asset Composition</h3>
+          <h3 className="text-sm font-semibold text-stone-700 mb-4">
+            Asset Composition
+          </h3>
 
           {/* Stacked Bar */}
           <div className="flex h-4 w-full rounded-full overflow-hidden mb-4 bg-stone-100">
@@ -201,13 +220,20 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => 
           {/* Legend */}
           <div className="space-y-2">
             {breakdown.map((item) => (
-              <div key={item.label} className="flex items-center justify-between">
+              <div
+                key={item.label}
+                className="flex items-center justify-between"
+              >
                 <div className="flex items-center gap-2">
-                  <div className={`h-2.5 w-2.5 rounded-full ${item.color} shrink-0`} />
+                  <div
+                    className={`h-2.5 w-2.5 rounded-full ${item.color} shrink-0`}
+                  />
                   <span className="text-xs text-stone-600">{item.label}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-stone-400">{item.percentage.toFixed(1)}%</span>
+                  <span className="text-xs text-stone-400">
+                    {item.percentage.toFixed(1)}%
+                  </span>
                   <span className="text-xs font-semibold text-stone-700">
                     {formatCurrency(item.value, state.currency)}
                   </span>
@@ -225,7 +251,9 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => 
         transition={{ delay: 0.4 }}
         className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4"
       >
-        <h3 className="text-xs font-semibold text-emerald-800 mb-2">Prices Used</h3>
+        <h3 className="text-xs font-semibold text-emerald-800 mb-2">
+          Prices Used
+        </h3>
         <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 text-xs">
           <div>
             <p className="text-emerald-600">Gold / gram</p>
@@ -241,17 +269,25 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, addToast }) => 
           </div>
         </div>
         <p className="text-xs text-emerald-600 mt-2">
-          Prices as of:{' '}
+          Prices as of:{" "}
           {new Date(metalPrices.fetchedAt).toLocaleString([], {
-            dateStyle: 'medium',
-            timeStyle: 'short',
+            dateStyle: "medium",
+            timeStyle: "short",
           })}
         </p>
       </motion.div>
 
       {/* Actions */}
-      <div className="flex gap-3">
-       
+      <div className="flex sm:flex-row flex-col gap-3">
+        <Button
+          variant="outline"
+          size="lg"
+          className="flex-1"
+          onClick={handleReset}
+          leftIcon={<RotateCcw className="h-4 w-4" />}
+        >
+          Recalculate
+        </Button>
         <Button
           variant="secondary"
           size="lg"
