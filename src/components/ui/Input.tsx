@@ -30,30 +30,33 @@ export const Input: React.FC<InputProps> = ({
           {label}
         </label>
       )}
-      <div className="relative flex items-center">
+      <div
+        className={[
+          'flex items-center rounded-xl border bg-white transition-all duration-150',
+          error
+            ? 'border-rose-400 focus-within:ring-2 focus-within:ring-rose-400 focus-within:border-rose-400'
+            : 'border-stone-200 hover:border-stone-300 focus-within:ring-2 focus-within:ring-emerald-500 focus-within:border-emerald-500',
+        ].join(' ')}
+      >
         {prefix && (
-          <span className="absolute left-0 flex items-center pl-3 pointer-events-none">
-            <span className="text-stone-500 text-sm font-medium">{prefix}</span>
+          <span className="pl-3 pr-1 text-stone-500 text-base font-medium pointer-events-none select-none shrink-0">
+            {prefix}
           </span>
         )}
         <input
           id={inputId}
           {...props}
           className={[
-            'w-full rounded-xl border bg-white text-stone-900 placeholder-stone-400 transition-all duration-150',
-            'focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500',
-            error
-              ? 'border-rose-400 focus:ring-rose-400 focus:border-rose-400'
-              : 'border-stone-200 hover:border-stone-300',
-            prefix ? 'pl-10' : 'pl-3',
-            suffix ? 'pr-16' : 'pr-3',
+            'flex-1 min-w-0 bg-transparent text-stone-900 placeholder-stone-400 focus:outline-none',
+            prefix ? 'pl-1' : 'pl-3',
+            suffix ? 'pr-1' : 'pr-3',
             'py-2.5 text-base',
             className,
           ].join(' ')}
         />
         {suffix && (
-          <span className="absolute right-0 flex items-center pr-3 pointer-events-none">
-            <span className="text-stone-400 text-xs">{suffix}</span>
+          <span className="pr-3 pl-1 text-stone-400 text-sm pointer-events-none select-none shrink-0">
+            {suffix}
           </span>
         )}
       </div>

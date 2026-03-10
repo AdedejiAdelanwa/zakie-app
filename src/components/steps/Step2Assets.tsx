@@ -128,8 +128,8 @@ export const Step2Assets: React.FC<Step2Props> = ({ state, dispatch }) => {
                     {cat.tooltip && <Tooltip content={cat.tooltip} />}
                   </div>
                   <p className="text-xs text-stone-500 mb-3">{cat.description}</p>
-                  <div className="relative flex items-center">
-                    <span className="absolute left-3 text-stone-500 text-sm font-medium pointer-events-none select-none">
+                  <div className="flex items-center rounded-xl border border-stone-200 bg-white hover:border-stone-300 focus-within:ring-2 focus-within:ring-emerald-500 focus-within:border-emerald-500 transition-colors">
+                    <span className="pl-3 pr-1 text-stone-500 text-base font-medium pointer-events-none select-none shrink-0">
                       {currencySymbol}
                     </span>
                     <input
@@ -139,7 +139,7 @@ export const Step2Assets: React.FC<Step2Props> = ({ state, dispatch }) => {
                       placeholder={cat.placeholder}
                       value={value === 0 ? '' : value}
                       onChange={(e) => handleChange(cat.key, e.target.value)}
-                      className="w-full rounded-xl border border-stone-200 bg-white text-stone-900 placeholder-stone-300 py-2.5 pl-8 pr-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 hover:border-stone-300 transition-colors"
+                      className="flex-1 min-w-0 bg-transparent text-stone-900 placeholder-stone-300 py-2.5 pr-3 text-base focus:outline-none"
                     />
                   </div>
                 </div>

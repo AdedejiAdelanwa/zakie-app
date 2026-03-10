@@ -274,12 +274,6 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, dispatch, addTo
           Print / Save
         </Button>
       </div>
-
-      {/* Disclaimer */}
-      <p className="text-xs text-stone-400 text-center leading-relaxed pb-4">
-        All calculations are done locally in your browser. This is a guide only — consult a
-        scholar for your specific situation.
-      </p>
     </motion.div>
   );
 };
