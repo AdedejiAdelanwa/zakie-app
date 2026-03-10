@@ -255,15 +255,7 @@ export const ResultsPage: React.FC<ResultsPageProps> = ({ state, dispatch, addTo
 
       {/* Actions */}
       <div className="flex gap-3">
-        <Button
-          variant="outline"
-          size="lg"
-          className="flex-1"
-          onClick={handleReset}
-          leftIcon={<RotateCcw className="h-4 w-4" />}
-        >
-          Recalculate
-        </Button>
+       
         <Button
           variant="secondary"
           size="lg"
