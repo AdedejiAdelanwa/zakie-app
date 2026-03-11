@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <!-- Background -->
-  <rect width="1200" height="630" fill="#1c1917"/>
+  <!-- Background: emerald-900 -->
+  <rect width="1200" height="630" fill="#064e3b"/>
 
   <!-- Subtle concentric rings (top right) -->
-  <circle cx="1050" cy="160" r="320" fill="none" stroke="#292524" stroke-width="1.5"/>
-  <circle cx="1050" cy="160" r="240" fill="none" stroke="#292524" stroke-width="1.5"/>
-  <circle cx="1050" cy="160" r="160" fill="none" stroke="#292524" stroke-width="1.5"/>
+  <circle cx="1050" cy="160" r="320" fill="none" stroke="#065f46" stroke-width="1.5"/>
+  <circle cx="1050" cy="160" r="240" fill="none" stroke="#065f46" stroke-width="1.5"/>
+  <circle cx="1050" cy="160" r="160" fill="none" stroke="#065f46" stroke-width="1.5"/>
 
   <!-- Crescent moon (clipping circle over filled circle) -->
   <circle cx="1020" cy="140" r="90" fill="#d97706"/>
-  <circle cx="1060" cy="110" r="78" fill="#1c1917"/>
+  <circle cx="1060" cy="110" r="78" fill="#064e3b"/>
 
   <!-- Star dot -->
   <circle cx="940" cy="80" r="6" fill="#d97706" opacity="0.8"/>
@@ -19,27 +19,27 @@
   <rect x="80" y="72" width="4" height="60" rx="2" fill="#d97706"/>
 
   <!-- App name -->
-  <text x="104" y="116" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700" fill="#fafaf9" letter-spacing="-1">Zakat Calculator</text>
+  <text x="104" y="116" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700" fill="#ecfdf5" letter-spacing="-1">Zakat Calculator</text>
 
   <!-- Tagline -->
-  <text x="104" y="175" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#a8a29e">Know what you owe. Calculate with live gold &amp; silver prices.</text>
+  <text x="104" y="175" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#6ee7b7">Know what you owe. Calculate with live gold &amp; silver prices.</text>
 
   <!-- Divider -->
-  <rect x="80" y="220" width="560" height="1" fill="#44403c"/>
+  <rect x="80" y="220" width="560" height="1" fill="#065f46"/>
 
   <!-- Feature pills -->
   <!-- Pill 1 -->
-  <rect x="80" y="256" width="156" height="44" rx="22" fill="#292524"/>
-  <text x="158" y="284" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="500" fill="#d6d3d1" text-anchor="middle">&#128274; Private</text>
+  <rect x="80" y="256" width="156" height="44" rx="22" fill="#065f46"/>
+  <text x="158" y="284" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="500" fill="#a7f3d0" text-anchor="middle">&#128274; Private</text>
 
   <!-- Pill 2 -->
-  <rect x="252" y="256" width="180" height="44" rx="22" fill="#292524"/>
-  <text x="342" y="284" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="500" fill="#d6d3d1" text-anchor="middle">&#128185; Free</text>
+  <rect x="252" y="256" width="180" height="44" rx="22" fill="#065f46"/>
+  <text x="342" y="284" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="500" fill="#a7f3d0" text-anchor="middle">&#128185; Free</text>
 
   <!-- Pill 3 -->
-  <rect x="448" y="256" width="220" height="44" rx="22" fill="#292524"/>
-  <text x="558" y="284" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="500" fill="#d6d3d1" text-anchor="middle">&#9889; Instant</text>
+  <rect x="448" y="256" width="220" height="44" rx="22" fill="#065f46"/>
+  <text x="558" y="284" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="500" fill="#a7f3d0" text-anchor="middle">&#9889; Instant</text>
 
   <!-- Bottom note -->
-  <text x="80" y="570" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#57534e">All calculations are done locally in your browser — no data leaves your device.</text>
+  <text x="80" y="570" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#34d399">All calculations are done locally in your browser — no data leaves your device.</text>
 </svg>
