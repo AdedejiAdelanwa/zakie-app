@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, ChevronLeft, Landmark, Gem, ShoppingBag, TrendingUp, HandCoins, PiggyBank, Building2 } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { CurrencyInput } from '../ui/Input';
 import { Tooltip } from '../ui/Tooltip';
 import { ZakatState, ZakatAction, Assets } from '../../types';
 import { formatCurrency, getCurrencySymbol } from '../../utils/formatters';
@@ -81,12 +82,8 @@ export const Step2Assets: React.FC<Step2Props> = ({ state, dispatch }) => {
   const currencySymbol = getCurrencySymbol(state.currency);
   const totalAssets = calculateTotalAssets(state.assets);
 
-  const handleChange = (key: keyof Assets, value: string) => {
-    const num = parseFloat(value);
-    dispatch({
-      type: 'SET_ASSET',
-      payload: { key, value: isNaN(num) || num < 0 ? 0 : num },
-    });
+  const handleChange = (key: keyof Assets, value: number) => {
+    dispatch({ type: 'SET_ASSET', payload: { key, value } });
   };
 
   return (
@@ -132,13 +129,10 @@ export const Step2Assets: React.FC<Step2Props> = ({ state, dispatch }) => {
                     <span className="pl-3 pr-1 text-stone-500 text-base font-medium pointer-events-none select-none shrink-0">
                       {currencySymbol}
                     </span>
-                    <input
-                      type="number"
-                      min="0"
-                      step="any"
+                    <CurrencyInput
+                      value={value}
                       placeholder={cat.placeholder}
-                      value={value === 0 ? '' : value}
-                      onChange={(e) => handleChange(cat.key, e.target.value)}
+                      onChange={(num) => handleChange(cat.key, num)}
                       className="flex-1 min-w-0 bg-transparent text-stone-900 placeholder-stone-300 py-2.5 pr-3 text-base focus:outline-none"
                     />
                   </div>

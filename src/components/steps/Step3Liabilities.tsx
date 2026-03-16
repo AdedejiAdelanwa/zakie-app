@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, ChevronLeft, CreditCard, Home, AlertCircle } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { CurrencyInput } from '../ui/Input';
 import { Tooltip } from '../ui/Tooltip';
 import { ZakatState, ZakatAction, Liabilities } from '../../types';
 import { formatCurrency, getCurrencySymbol } from '../../utils/formatters';
@@ -55,12 +56,8 @@ export const Step3Liabilities: React.FC<Step3Props> = ({ state, dispatch }) => {
   const totalLiabilities = calculateTotalLiabilities(state.liabilities);
   const netWealth = Math.max(0, totalAssets - totalLiabilities);
 
-  const handleChange = (key: keyof Liabilities, value: string) => {
-    const num = parseFloat(value);
-    dispatch({
-      type: 'SET_LIABILITY',
-      payload: { key, value: isNaN(num) || num < 0 ? 0 : num },
-    });
+  const handleChange = (key: keyof Liabilities, value: number) => {
+    dispatch({ type: 'SET_LIABILITY', payload: { key, value } });
   };
 
   return (
@@ -105,13 +102,10 @@ export const Step3Liabilities: React.FC<Step3Props> = ({ state, dispatch }) => {
                     <span className="pl-3 pr-1 text-stone-500 text-base font-medium pointer-events-none select-none shrink-0">
                       {currencySymbol}
                     </span>
-                    <input
-                      type="number"
-                      min="0"
-                      step="any"
+                    <CurrencyInput
+                      value={value}
                       placeholder={cat.placeholder}
-                      value={value === 0 ? '' : value}
-                      onChange={(e) => handleChange(cat.key, e.target.value)}
+                      onChange={(num) => handleChange(cat.key, num)}
                       className="flex-1 min-w-0 bg-transparent text-stone-900 placeholder-stone-300 py-2.5 pr-3 text-base focus:outline-none"
                     />
                   </div>
