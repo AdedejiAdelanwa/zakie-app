@@ -105,7 +105,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-stone-50 font-sans">
-      <Header />
+      <Header onReset={() => dispatch({ type: 'RESET' })} />
       {state.currentStep < 4 && (
         <StepIndicator currentStep={state.currentStep} totalSteps={4} />
       )}
