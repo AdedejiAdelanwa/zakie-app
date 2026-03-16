@@ -1,13 +1,21 @@
 import React from 'react';
 import { Moon } from 'lucide-react';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  onReset: () => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({ onReset }) => {
   return (
     <header className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-emerald-800 text-white no-print">
       <div className="max-w-2xl mx-auto px-4 py-5 flex items-center gap-3">
-        <div className="bg-amber-400 rounded-xl p-2 shadow-lg shadow-emerald-900/30 shrink-0">
+        <button
+          onClick={onReset}
+          title="Start over"
+          className="bg-amber-400 rounded-xl p-2 shadow-lg shadow-emerald-900/30 shrink-0 hover:bg-amber-300 active:scale-95 transition-all duration-150 cursor-pointer"
+        >
           <Moon className="h-6 w-6 text-emerald-900 fill-emerald-900" />
-        </div>
+        </button>
         <div>
           <h1 className="text-lg sm:text-xl font-bold tracking-tight">Zakat Calculator</h1>
           <p className="text-emerald-200 text-xs mt-0.5">
