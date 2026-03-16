@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -7,6 +7,63 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   hint?: string;
 }
+
+interface CurrencyInputProps {
+  value: number;
+  onChange: (value: number) => void;
+  placeholder?: string;
+  className?: string;
+}
+
+export const CurrencyInput: React.FC<CurrencyInputProps> = ({
+  value,
+  onChange,
+  placeholder,
+  className = '',
+}) => {
+  const [displayValue, setDisplayValue] = useState(() =>
+    value === 0 ? '' : value.toLocaleString('en-US')
+  );
+  const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    if (!isFocused) {
+      setDisplayValue(value === 0 ? '' : value.toLocaleString('en-US'));
+    }
+  }, [value, isFocused]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value.replace(/,/g, '');
+    if (raw !== '' && !/^\d*\.?\d*$/.test(raw)) return;
+
+    const parts = raw.split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    setDisplayValue(parts.length > 1 ? parts[0] + '.' + parts.slice(1).join('') : parts[0]);
+
+    const num = parseFloat(raw);
+    onChange(isNaN(num) || num < 0 ? 0 : num);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    setDisplayValue(
+      value === 0 ? '' : value.toLocaleString('en-US', { maximumFractionDigits: 2 })
+    );
+  };
+
+  return (
+    <input
+      type="text"
+      inputMode="decimal"
+      placeholder={placeholder}
+      value={displayValue}
+      onChange={handleChange}
+      onFocus={() => setIsFocused(true)}
+      onBlur={handleBlur}
+      className={className}
+    />
+  );
+};
 
 export const Input: React.FC<InputProps> = ({
   label,
